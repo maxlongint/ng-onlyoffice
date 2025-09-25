@@ -1,4 +1,4 @@
-# OnlyOffice Angular 文档查看器 （纯前端）
+# OnlyOffice Angular 文档查看器 （纯前端实现office在线编辑预览）
 
 这是一个基于 Angular 12 和 OnlyOffice 技术实现的在线文档查看器项目，参考了 [ranuts/document](https://github.com/ranuts/document) 和 [sweetwisdom/onlyoffice-web-local](https://github.com/sweetwisdom/onlyoffice-web-local) 项目。
 
