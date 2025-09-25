@@ -23,10 +23,28 @@
     height: 50px;
     box-sizing: border-box;
 
+    .toolbar-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
     h1 {
         font-size: 1.2rem;
         font-weight: 600;
         color: #333;
+        margin: 0;
+    }
+
+    .github-link {
+        color: #333;
+        transition: color 0.2s;
+        text-decoration: none;
+        margin-top: 8px;
+
+        &:hover {
+            color: #000;
+        }
     }
 
     .controls {
