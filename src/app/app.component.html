@@ -1,0 +1,25 @@
+<div class="editor-viewer">
+    <div class="editor-toolbar">
+        <h1>在线文档查看器 (Angular 12版本)</h1>
+        <div class="controls">
+            <button (click)="uploadDocument()" class="button">
+                📂 Upload Document to view
+                <input
+                    type="file"
+                    #inputFile
+                    accept=".docx,.xlsx,.pptx,.doc,.xls,.ppt"
+                    (change)="uploadChange($event)"
+                    style="display: none"
+                />
+            </button>
+            <button (click)="loadDocument('docx')" class="button">📄 New Word (.docx)</button>
+            <button (click)="loadDocument('xlsx')" class="button">📊 New Excel (.xlsx)</button>
+            <button (click)="loadDocument('pptx')" class="button">🖥️ New PowerPoint (.pptx)</button>
+        </div>
+    </div>
+
+    <div class="editor-wrapper">
+        <!-- ONLYOFFICE 编辑器将在这里渲染 -->
+        <div #editorPlaceholder id="placeholder" class="editor-container"></div>
+    </div>
+</div>

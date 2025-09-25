@@ -1,0 +1,66 @@
+:host {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+.editor-viewer {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    height: 50px;
+    box-sizing: border-box;
+
+    h1 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        span {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .button {
+            padding: 8px 12px;
+            border: 1px solid #007bff;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+}
+
+.editor-wrapper {
+    flex: 1;
+
+    .editor-container {
+        width: 100%;
+        height: 100%;
+    }
+}
