@@ -1,9 +1,21 @@
 import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { g_sEmpty_bin } from './lib/empty_bin';
-import { convertDocument } from './lib/x2t';
+import { c_oAscFileType2, convertBinToDocumentAndDownload, convertDocument } from './lib/x2t';
 
 // 告诉 TypeScript DocsAPI 将会是一个全局变量
 declare const DocsAPI: any;
+
+interface SaveEvent {
+    data: {
+        data: {
+            data: any;
+            a5b: any | null; // a5b 的值为 null，可以定义为 any 或 null 类型
+            index: number;
+            count: number;
+        };
+        option: any;
+    };
+}
 
 @Component({
     selector: 'app-root',
@@ -128,7 +140,9 @@ export class AppComponent implements AfterViewInit, OnDestroy {
                 onDocumentReady: () => {
                     console.log('文档加载完成');
                 },
-                // onSave: handleSaveDocument,
+                onSave: (event: SaveEvent) => {
+                    this.handleSaveDocument(event.data);
+                },
                 // writeFile
                 // todo writeFile 当外部粘贴图片时候处理
                 // writeFile: handleWriteFile,
@@ -152,5 +166,21 @@ export class AppComponent implements AfterViewInit, OnDestroy {
      */
     private generateDocumentKey(fileExt: string): string {
         return `key_${fileExt}_${new Date().getTime()}`;
+    }
+
+    private async handleSaveDocument(result: SaveEvent['data']): Promise<void> {
+        if (result && result.data) {
+            const { data, option } = result;
+            // 创建下载
+            await convertBinToDocumentAndDownload(data.data, '' + +new Date(), c_oAscFileType2[option.outputformat]);
+            // const blob = dataURItoBlob(data);
+            // saveAs(blob, props.file.fileName);
+        }
+
+        // 告知编辑器保存完成
+        this.docEditor.sendCommand({
+            command: 'asc_onSaveCallback',
+            data: { err_code: 0 },
+        });
     }
 }
